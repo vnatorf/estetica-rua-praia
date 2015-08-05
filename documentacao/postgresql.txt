@@ -1,0 +1,28 @@
+https://www.youtube.com/watch?v=UlYkV5NDJK4
+
+
+
+----
+
+1- Painel de Controle > Contas Usuário e Proteção p/ Família > Contas de Usuário > Alterar configurações de Controle de Conta de Usuário > Nunca notificar;
+2- reiniciar o pc;
+3- iniciar instalador;
+4- next > installation direcotory > data direcotory (mesma pasta onde está o installation direcotory) > password (senha do banco de dados) > port (5432) > advanced options (locale [default locale]) > install additional tools (deixar a opção marcada) > finish;
+5- stack builder (selecionar o Postgresql porta 5432) > selecionar Spatial Extensions (marcar a opção) > selecionar diretório download > não marca opção Skip Installation next > I Agree;
+6- início instalação postGIS > primeira tela next > destination folder (mesma pasta do postgres) > informar a senha do banco de dados (usarname: postgres / port: 5432) > confirmar as popups de intalação de complemento > close > finish;
+7- Iniciar o pgAdmin III > selecionar dentro do Servers o postgres para conectar > informar a senha do banco de dados
+8- Copiar para dentro do arquivo: plugins.ini  / caminho: C:\Program Files (x86)\PostgreSQL\9.4\pgAdmin III\plugins.d
+Encontrar nesse caminho: http://www.postgresonline.com/journal/archives/145-PgAdmin-III-Plug-in-Registration-PostGIS-Shapefile-and-DBF-Loader.html
+ou colar texto abaixo:
+
+;
+;PostGIS shp2pgsql-gui (Windows):
+;
+Title=PostGIS Shapefile and DBF loader
+Command="$$PGBINDIR\postgisgui\shp2pgsql-gui.exe" -h "$$HOSTNAME" -p $$PORT -U "$$USERNAME" -d "$$DATABASE" -W "$$PASSWORD"
+Description=Open a PostGIS ESRI Shapefile or Plain dbf loader console to the current database.
+KeyFile=$$PGBINDIR\postgisgui\shp2pgsql-gui.exe
+Platform=windows
+ServerType=postgresql
+Database=Yes
+SetPassword=Yes
