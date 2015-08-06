@@ -1,0 +1,39 @@
+-- TABELA PESSOA
+CREATE TABLE erp_pess (
+	id_pess		NUMERIC(8, 0)	PRIMARY KEY NOT NULL,	-- Identificador
+	nm_pess		VARCHAR(50)		NOT NULL,		-- Nome
+	dt_nasc		DATE			NULL,			-- Data de nascimento
+	nr_cpf		VARCHAR(11)		NULL,			-- CPF
+	dt_cad  	DATE			NOT NULL,		-- Data de cadastro
+	cd_usu_atu	VARCHAR(15)		NOT NULL,		-- Código do usuário
+	dh_atu		DATE			NOT NULL,		-- Data/hora atualização
+	id_sit		CHAR(1)			NOT NULL		-- Indicador da situação do registro
+);
+
+-- TABELA CLIENTE
+CREATE TABLE erp_clie (
+	id_clie		NUMERIC(8, 0)	PRIMARY KEY NOT NULL,					-- Código do cliente
+	id_pess		NUMERIC(8, 0)	REFERENCES erp_pess (id_pess) NOT NULL,	-- Código da pessoa
+	dt_ult_atd  DATE			NULL									-- Data do último atendimento
+);
+
+-- TABELA FUNCIONARIO
+CREATE TABLE erp_func (
+	id_func		NUMERIC(8, 0)	PRIMARY KEY NOT NULL,			-- Código do funcionário
+	id_pess		NUMERIC(8, 0)	REFERENCES erp_pess (id_pess) NOT NULL,	-- Código da pessoa
+	vr_sal		DECIMAL(15, 2)	NOT NULL				-- Salário
+);
+
+-- TABELA CONTATOS PESSOA
+CREATE TABLE erp_cope (
+	id_cope		NUMERIC(8, 0)	PRIMARY KEY NOT NULL,			-- Código do contato
+	id_tip_cont	NUMERIC(8, 0)	PRIMARY KEY NOT NULL,			-- Tipo do contato
+	id_pess		NUMERIC(8, 0)	REFERENCES erp_pess (id_pess) NOT NULL,	-- Código da pessoa
+	ds_email	VARCHAR(50)	NULL,					-- Email
+	nr_tel_res	NUMERIC(11)	NULL,					-- Telefone residencial
+	nr_cel		NUMERIC(11)	NULL,					-- Celular
+	nr_com		NUMERIC(11)	NULL,					-- Telefone comercial
+	cd_usu_atu	VARCHAR(15)	NOT NULL,				-- Código do usuário
+	dh_atu		DATE		NOT NULL,				-- Data/hora atualização
+	id_sit		CHAR(1)		NOT NULL				-- Indicador da situação do registro
+);

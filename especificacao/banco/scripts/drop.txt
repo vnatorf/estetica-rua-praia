@@ -1,0 +1,4 @@
+DROP TABLE erp_pess;
+DROP TABLE erp_clie;
+DROP TABLE erp_func;
+DROP TABLE erp_cope;
